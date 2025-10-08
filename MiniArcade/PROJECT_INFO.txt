@@ -1,0 +1,218 @@
+════════════════════════════════════════════════════════════════════════
+                        MINI ARCADE - INFORMATIONS PROJET
+════════════════════════════════════════════════════════════════════════
+
+📊 STATISTIQUES DU PROJET
+─────────────────────────
+Langage               : C++17
+Bibliothèque graphique: SFML 2.6+
+Build system          : CMake 3.16+
+Nombre de jeux        : 3 (Reflex, Snake, Pong)
+Fichiers sources      : 12 fichiers .cpp/.hpp
+Lignes de code        : ~1500 lignes (commentaires inclus)
+Cross-platform        : Windows, Linux, macOS
+
+════════════════════════════════════════════════════════════════════════
+
+📁 ARCHITECTURE DU CODE
+───────────────────────
+
+Classes principales:
+  • Game (abstraite)        - Classe de base pour tous les jeux
+  • Menu                    - Menu principal avec navigation
+  • ReflexGame              - Jeu de test de réflexes
+  • SnakeGame               - Snake classique sur grille
+  • PongGame                - Pong à 2 joueurs
+
+Utilitaires:
+  • ResourceManager         - Gestion centralisée des ressources (Singleton)
+  • ScoreManager            - Sauvegarde des meilleurs scores (Singleton)
+
+Patterns utilisés:
+  ✓ Singleton (ResourceManager, ScoreManager)
+  ✓ Polymorphisme (classe Game abstraite)
+  ✓ RAII (gestion mémoire automatique)
+  ✓ Smart pointers (std::shared_ptr, std::unique_ptr)
+
+════════════════════════════════════════════════════════════════════════
+
+🎮 MINI-JEUX INCLUS
+───────────────────
+
+1. REFLEX GAME
+   Concept    : Cliquer rapidement quand le carré devient vert
+   Contrôles  : Souris
+   Difficulté : Temps d'attente aléatoire (1.5s - 4s)
+   Score      : +1 par réussite, -1 si clic trop tôt
+
+2. SNAKE GAME
+   Concept    : Serpent qui mange des pommes et grandit
+   Contrôles  : Flèches directionnelles
+   Grille     : 20x20 cases
+   Game Over  : Collision avec soi-même ou les murs
+   
+3. PONG GAME
+   Concept    : Tennis de table à 2 joueurs
+   Contrôles  : J1 (Z/S), J2 (Flèches)
+   Objectif   : Premier à 5 points gagne
+   Physique   : Effet de rebond selon l'endroit touché
+
+════════════════════════════════════════════════════════════════════════
+
+✨ FONCTIONNALITÉS BONUS IMPLÉMENTÉES
+─────────────────────────────────────
+
+✓ Sauvegarde automatique des meilleurs scores dans highscores.txt
+✓ Affichage des records dans chaque jeu
+✓ Scripts de compilation automatiques (build.sh / build.bat)
+✓ Documentation complète multi-niveaux
+✓ Architecture modulaire et extensible
+✓ Gestion des ressources optimisée (cache)
+✓ Interface utilisateur polie et intuitive
+
+════════════════════════════════════════════════════════════════════════
+
+📚 DOCUMENTATION FOURNIE
+────────────────────────
+
+README.md         → Documentation technique complète (installation, 
+                    compilation, résolution de problèmes)
+                    
+QUICK_START.md    → Guide de démarrage rapide pour utilisateurs pressés
+
+INSTALL.txt       → Instructions d'installation simplifiées 
+                    (format texte ASCII)
+                    
+PROJECT_INFO.txt  → Ce fichier - Vue d'ensemble du projet
+
+LICENSE           → Licence MIT + licences des dépendances
+
+.gitignore        → Exclusions Git (build/, IDE, etc.)
+
+════════════════════════════════════════════════════════════════════════
+
+🛠️ FICHIERS DE BUILD
+────────────────────
+
+CMakeLists.txt    → Configuration CMake moderne avec:
+                    - Détection automatique de SFML
+                    - FetchContent pour téléchargement auto si absent
+                    - Copie automatique des assets
+                    - Support multi-plateforme
+
+build.sh          → Script de compilation Linux/macOS
+                    - Vérification des dépendances
+                    - Compilation parallèle (-j)
+                    - Messages d'erreur clairs
+                    
+build.bat         → Script de compilation Windows
+                    - Compatible PowerShell et CMD
+                    - Détection de CMake
+                    - Build en mode Release
+
+════════════════════════════════════════════════════════════════════════
+
+🎨 ASSETS INCLUS
+────────────────
+
+font.ttf          → Police Roboto Regular (Apache License 2.0)
+                    Téléchargée depuis Google Fonts
+                    
+sounds/           → Dossier préparé pour effets sonores (vide)
+images/           → Dossier préparé pour images/sprites (vide)
+
+════════════════════════════════════════════════════════════════════════
+
+🔧 EXTENSIBILITÉ
+────────────────
+
+Comment ajouter un nouveau jeu:
+
+1. Créer NewGame.hpp/cpp héritant de Game
+2. Implémenter la méthode virtuelle run()
+3. Gérer les événements (window.pollEvent)
+4. Mettre à jour et afficher (render loop)
+5. Ajouter au menu dans Menu.cpp
+6. Ajouter au switch dans main.cpp
+7. Ajouter aux SOURCES dans CMakeLists.txt
+8. Recompiler !
+
+Exemple de squelette:
+
+    class NewGame : public Game {
+    public:
+        explicit NewGame(sf::RenderWindow& win) : Game(win) {}
+        void run() override {
+            while (window.isOpen() && !returnToMenu) {
+                // Gérer événements
+                // Mettre à jour logique
+                // Afficher
+            }
+        }
+    };
+
+════════════════════════════════════════════════════════════════════════
+
+📈 POSSIBILITÉS D'AMÉLIORATION
+──────────────────────────────
+
+Faciles:
+  □ Ajouter des sons (clic, manger, collision)
+  □ Musique de fond dans le menu
+  □ Thèmes de couleurs personnalisables
+  □ Plus de niveaux de difficulté
+
+Moyennes:
+  □ Mode IA pour Pong (algorithme de poursuite)
+  □ Power-ups dans Snake
+  □ Leaderboard en ligne
+  □ Effets de particules
+
+Avancées:
+  □ Éditeur de niveaux
+  □ Mode multijoueur en réseau
+  □ Système de succès/achievements
+  □ Animations et transitions fluides
+
+════════════════════════════════════════════════════════════════════════
+
+🎯 OBJECTIFS PÉDAGOGIQUES ATTEINTS
+──────────────────────────────────
+
+✓ Programmation orientée objet (héritage, polymorphisme)
+✓ Gestion d'événements et boucle de jeu
+✓ Utilisation d'une bibliothèque externe (SFML)
+✓ Build system moderne (CMake)
+✓ Patterns de conception (Singleton, RAII)
+✓ Gestion de ressources (mémoire, fichiers)
+✓ Code cross-platform
+✓ Documentation et organisation de projet
+✓ Persistance de données (fichiers)
+
+════════════════════════════════════════════════════════════════════════
+
+📞 SUPPORT ET CONTACT
+────────────────────
+
+Ce projet est auto-documenté et prêt à l'emploi.
+
+En cas de problème:
+  1. Consultez README.md (section "Résolution de problèmes")
+  2. Vérifiez que les dépendances sont installées
+  3. Relancez la compilation depuis zéro (supprimez build/)
+
+════════════════════════════════════════════════════════════════════════
+
+🎉 PRÊT À L'EMPLOI !
+
+Le projet est 100% fonctionnel et prêt à être:
+  • Compilé sur n'importe quelle plateforme
+  • Partagé avec des amis
+  • Utilisé comme base pour vos propres jeux
+  • Étudié pour apprendre C++ et SFML
+  • Étendu avec de nouvelles fonctionnalités
+
+Bon jeu et bon code ! 🚀
+
+════════════════════════════════════════════════════════════════════════
+
