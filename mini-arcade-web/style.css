@@ -1,0 +1,559 @@
+/* ========================================
+   MINI ARCADE UNIVERSE - CSS STYLESHEET
+   Design: Cosmos / Néon / Futuriste
+   ======================================== */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+
+/* ========== VARIABLES ========== */
+:root {
+    /* Couleurs Néon/Cosmos */
+    --bg-dark: #0a0e27;
+    --bg-darker: #050811;
+    --primary-cyan: #00f0ff;
+    --primary-purple: #b24bf3;
+    --primary-pink: #ff2e97;
+    --accent-blue: #4361ee;
+    --accent-violet: #7209b7;
+    --glow-cyan: rgba(0, 240, 255, 0.6);
+    --glow-purple: rgba(178, 75, 243, 0.6);
+    --glow-pink: rgba(255, 46, 151, 0.6);
+    
+    /* Fonts */
+    --font-title: 'Orbitron', sans-serif;
+    --font-body: 'Rajdhani', sans-serif;
+    
+    /* Transitions */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+/* ========== RESET & BASE ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: var(--font-body);
+    background: var(--bg-darker);
+    color: #ffffff;
+    position: relative;
+}
+
+/* ========== CANVAS ÉTOILES ========== */
+#stars-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ========== CONTAINER PRINCIPAL ========== */
+#app {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.screen.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+/* ========== MENU PRINCIPAL ========== */
+#menu-screen {
+    padding: 2rem;
+}
+
+.cosmic-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--glow-purple), transparent 70%);
+    filter: blur(100px);
+    opacity: 0.3;
+    animation: pulse-glow 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
+    50% { opacity: 0.5; transform: translate(-50%, -50%) scale(1.1); }
+}
+
+/* ========== TITRE PRINCIPAL ========== */
+.main-title {
+    font-family: var(--font-title);
+    font-size: 4rem;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 2;
+}
+
+.title-word {
+    display: inline-block;
+    margin: 0 0.5rem;
+    background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: title-float 3s ease-in-out infinite;
+    text-shadow: 0 0 30px var(--glow-cyan);
+}
+
+.title-word:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.title-word.universe {
+    background: linear-gradient(135deg, var(--primary-pink), var(--primary-purple));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation-delay: 0.4s;
+}
+
+@keyframes title-float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+/* ========== GRILLE DE JEUX ========== */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.game-card {
+    position: relative;
+    background: rgba(10, 14, 39, 0.6);
+    border: 2px solid rgba(0, 240, 255, 0.3);
+    border-radius: 20px;
+    padding: 2rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+
+.game-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+        transparent,
+        var(--primary-cyan),
+        transparent 30%
+    );
+    animation: card-rotate 4s linear infinite;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.game-card:hover::before {
+    opacity: 0.3;
+}
+
+@keyframes card-rotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.card-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, var(--glow-cyan), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.game-card:hover .card-glow {
+    opacity: 0.3;
+}
+
+.game-card:hover {
+    transform: translateY(-10px) scale(1.05);
+    border-color: var(--primary-cyan);
+    box-shadow: 0 20px 60px var(--glow-cyan);
+}
+
+.card-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.game-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    filter: drop-shadow(0 0 10px var(--primary-cyan));
+    animation: icon-bounce 2s ease-in-out infinite;
+}
+
+@keyframes icon-bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+.game-card h3 {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--primary-cyan);
+    text-shadow: 0 0 10px var(--glow-cyan);
+}
+
+.game-card p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 1rem;
+}
+
+.best-score {
+    font-family: var(--font-title);
+    font-size: 0.9rem;
+    color: var(--primary-pink);
+    padding: 0.5rem;
+    background: rgba(255, 46, 151, 0.1);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 46, 151, 0.3);
+}
+
+/* ========== FOOTER INFO ========== */
+.footer-info {
+    text-align: center;
+    margin-top: 2rem;
+    position: relative;
+    z-index: 2;
+}
+
+.footer-info p {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.6);
+    animation: fade-pulse 2s ease-in-out infinite;
+}
+
+@keyframes fade-pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 1; }
+}
+
+/* ========== ÉCRAN DE JEU ========== */
+#game-screen {
+    padding: 0;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    background: rgba(10, 14, 39, 0.8);
+    border-bottom: 2px solid var(--primary-cyan);
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 10;
+}
+
+.game-title-display h2 {
+    font-family: var(--font-title);
+    font-size: 1.8rem;
+    color: var(--primary-cyan);
+    text-shadow: 0 0 20px var(--glow-cyan);
+}
+
+.score-display {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    color: var(--primary-pink);
+    background: rgba(255, 46, 151, 0.1);
+    padding: 0.5rem 1.5rem;
+    border-radius: 30px;
+    border: 2px solid var(--primary-pink);
+    box-shadow: 0 0 20px var(--glow-pink);
+}
+
+/* ========== BOUTONS COSMIQUES ========== */
+.cosmic-button {
+    font-family: var(--font-title);
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+    border: 2px solid var(--primary-cyan);
+    background: rgba(0, 240, 255, 0.1);
+    color: var(--primary-cyan);
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(5px);
+}
+
+.cosmic-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 100%;
+    background: var(--primary-cyan);
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.cosmic-button:hover::before {
+    width: 100%;
+}
+
+.cosmic-button:hover {
+    color: var(--bg-dark);
+    box-shadow: 0 0 30px var(--glow-cyan);
+    transform: scale(1.05);
+}
+
+.cosmic-button.primary {
+    border-color: var(--primary-pink);
+    color: var(--primary-pink);
+    background: rgba(255, 46, 151, 0.1);
+}
+
+.cosmic-button.primary::before {
+    background: var(--primary-pink);
+}
+
+.cosmic-button.primary:hover {
+    box-shadow: 0 0 30px var(--glow-pink);
+}
+
+/* ========== CONTAINER DE JEU ========== */
+#game-container {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 2rem;
+}
+
+#game-canvas {
+    border: 3px solid var(--primary-cyan);
+    border-radius: 10px;
+    box-shadow: 0 0 40px var(--glow-cyan);
+    background: rgba(10, 14, 39, 0.8);
+}
+
+#game-html-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========== GAME OVER ========== */
+.game-over-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(5, 8, 17, 0.95);
+    z-index: 100;
+    transition: opacity 0.3s ease;
+}
+
+.game-over-screen.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.game-over-content {
+    text-align: center;
+    padding: 3rem;
+    background: rgba(10, 14, 39, 0.9);
+    border: 3px solid var(--primary-pink);
+    border-radius: 20px;
+    box-shadow: 0 0 50px var(--glow-pink);
+}
+
+.game-over-content h2 {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    color: var(--primary-pink);
+    margin-bottom: 2rem;
+}
+
+.pulse-glow {
+    animation: pulse-text 1s ease-in-out infinite;
+}
+
+@keyframes pulse-text {
+    0%, 100% { 
+        text-shadow: 0 0 20px var(--glow-pink);
+        transform: scale(1);
+    }
+    50% { 
+        text-shadow: 0 0 40px var(--glow-pink);
+        transform: scale(1.05);
+    }
+}
+
+.final-score {
+    font-family: var(--font-title);
+    font-size: 2rem;
+    color: var(--primary-cyan);
+    margin-bottom: 1rem;
+}
+
+.best-score-display {
+    font-family: var(--font-title);
+    font-size: 1.2rem;
+    color: var(--primary-purple);
+    margin-bottom: 2rem;
+}
+
+.game-over-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+/* ========== ANIMATIONS SPÉCIFIQUES AUX JEUX ========== */
+
+/* Pour Reflex Game */
+.reflex-target {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--primary-pink), var(--accent-violet));
+    box-shadow: 0 0 30px var(--glow-pink);
+    animation: target-pulse 0.5s ease-in-out infinite;
+    cursor: pointer;
+}
+
+@keyframes target-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Pour Click Rush */
+.click-zone {
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    background: linear-gradient(135deg, var(--primary-cyan), var(--primary-purple));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    font-family: var(--font-title);
+    cursor: pointer;
+    transition: transform 0.1s ease;
+    box-shadow: 0 0 40px var(--glow-cyan);
+}
+
+.click-zone:active {
+    transform: scale(0.95);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 2.5rem;
+    }
+    
+    .game-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .game-header {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+    
+    .game-over-content {
+        padding: 2rem;
+    }
+    
+    .game-over-buttons {
+        flex-direction: column;
+    }
+}
+
+/* ========== CLASSES UTILITAIRES ========== */
+.hidden {
+    display: none !important;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.shake {
+    animation: shake 0.5s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+}
+

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Arcade Web - Universe Edition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Canvas pour l'arrière-plan animé (étoiles, particules) -->
+    <canvas id="stars-canvas"></canvas>
+    
+    <!-- Container principal -->
+    <div id="app">
+        
+        <!-- Menu principal -->
+        <div id="menu-screen" class="screen active">
+            <div class="cosmic-glow"></div>
+            
+            <h1 class="main-title">
+                <span class="title-word">MINI</span>
+                <span class="title-word">ARCADE</span>
+                <span class="title-word universe">UNIVERSE</span>
+            </h1>
+            
+            <div class="game-grid">
+                <div class="game-card" data-game="reflex">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="game-icon">⚡</div>
+                        <h3>Reflex Game</h3>
+                        <p>Teste ta rapidité !</p>
+                        <div class="best-score">Meilleur : <span id="best-reflex">0</span></div>
+                    </div>
+                </div>
+                
+                <div class="game-card" data-game="snake">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="game-icon">🐍</div>
+                        <h3>Snake</h3>
+                        <p>Le classique indémodable</p>
+                        <div class="best-score">Meilleur : <span id="best-snake">0</span></div>
+                    </div>
+                </div>
+                
+                <div class="game-card" data-game="pong">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="game-icon">🏓</div>
+                        <h3>Pong</h3>
+                        <p>Pong spatial</p>
+                        <div class="best-score">Meilleur : <span id="best-pong">0</span></div>
+                    </div>
+                </div>
+                
+                <div class="game-card" data-game="clickrush">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="game-icon">👆</div>
+                        <h3>Click Rush</h3>
+                        <p>Clique le plus vite !</p>
+                        <div class="best-score">Meilleur : <span id="best-clickrush">0</span></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-info">
+                <p>Sélectionne un jeu pour commencer l'aventure cosmique</p>
+            </div>
+        </div>
+        
+        <!-- Écran de jeu universel -->
+        <div id="game-screen" class="screen">
+            <div class="game-header">
+                <button id="back-btn" class="cosmic-button">
+                    <span>← Menu</span>
+                </button>
+                <div class="game-title-display">
+                    <h2 id="current-game-title"></h2>
+                </div>
+                <div class="score-display">
+                    Score: <span id="current-score">0</span>
+                </div>
+            </div>
+            
+            <div id="game-container">
+                <!-- Canvas pour les jeux -->
+                <canvas id="game-canvas"></canvas>
+                
+                <!-- Zone pour les jeux HTML (si besoin) -->
+                <div id="game-html-container"></div>
+            </div>
+            
+            <!-- Écran de Game Over -->
+            <div id="game-over" class="game-over-screen hidden">
+                <div class="game-over-content">
+                    <h2 class="pulse-glow">GAME OVER</h2>
+                    <p class="final-score">Score Final: <span id="final-score">0</span></p>
+                    <p class="best-score-display">Meilleur Score: <span id="best-score-display">0</span></p>
+                    <div class="game-over-buttons">
+                        <button id="restart-btn" class="cosmic-button primary">
+                            <span>🔄 Rejouer</span>
+                        </button>
+                        <button id="menu-btn" class="cosmic-button">
+                            <span>🏠 Menu</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- Audio elements (optionnel, peut être désactivé) -->
+    <audio id="menu-music" loop>
+        <!-- <source src="assets/sounds/menu-music.mp3" type="audio/mpeg"> -->
+    </audio>
+    <audio id="game-music" loop>
+        <!-- <source src="assets/sounds/game-music.mp3" type="audio/mpeg"> -->
+    </audio>
+    <audio id="click-sound">
+        <!-- <source src="assets/sounds/click.mp3" type="audio/mpeg"> -->
+    </audio>
+    <audio id="success-sound">
+        <!-- <source src="assets/sounds/success.mp3" type="audio/mpeg"> -->
+    </audio>
+    <audio id="fail-sound">
+        <!-- <source src="assets/sounds/fail.mp3" type="audio/mpeg"> -->
+    </audio>
+    
+    <!-- Scripts -->
+    <script src="js/utils.js"></script>
+    <script src="js/ReflexGame.js"></script>
+    <script src="js/SnakeGame.js"></script>
+    <script src="js/PongGame.js"></script>
+    <script src="js/ClickRush.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
+
