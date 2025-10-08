@@ -63,10 +63,133 @@
                         <div class="best-score">Meilleur : <span id="best-clickrush">0</span></div>
                     </div>
                 </div>
+                
+                <div class="game-card multiplayer" data-game="tron">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="game-icon">🏍️</div>
+                        <h3>Tron</h3>
+                        <p>Course lumineuse 2J</p>
+                        <div class="best-score multiplayer-badge">👥 Multijoueur</div>
+                    </div>
+                </div>
+                
+                <div class="game-card multiplayer" data-game="airhockey">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="game-icon">🏒</div>
+                        <h3>Air Hockey</h3>
+                        <p>Hockey spatial 2J</p>
+                        <div class="best-score multiplayer-badge">👥 Multijoueur</div>
+                    </div>
+                </div>
+                
+                <div class="game-card multiplayer" data-game="tankbattle">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="game-icon">🔫</div>
+                        <h3>Tank Battle</h3>
+                        <p>Combat de tanks 2J</p>
+                        <div class="best-score multiplayer-badge">👥 Multijoueur</div>
+                    </div>
+                </div>
+                
+                <div class="game-card" data-game="tetris">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="game-icon">🧱</div>
+                        <h3>Tetris</h3>
+                        <p>Le classique indémodable !</p>
+                        <div class="best-score">Meilleur : <span id="best-tetris">0</span></div>
+                    </div>
+                </div>
+                
+                <div class="game-card" data-game="breakout">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="game-icon">🎯</div>
+                        <h3>Breakout</h3>
+                        <p>Casse-briques spatial</p>
+                        <div class="best-score">Meilleur : <span id="best-breakout">0</span></div>
+                    </div>
+                </div>
+                
+                <div class="game-card" data-game="spaceinvaders">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="game-icon">👾</div>
+                        <h3>Space Invaders</h3>
+                        <p>Shooter rétro</p>
+                        <div class="best-score">Meilleur : <span id="best-spaceinvaders">0</span></div>
+                    </div>
+                </div>
+                
+                <div class="game-card" data-game="flappy">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="game-icon">🐦</div>
+                        <h3>Flappy Bird</h3>
+                        <p>Difficile mais addictif</p>
+                        <div class="best-score">Meilleur : <span id="best-flappy">0</span></div>
+                    </div>
+                </div>
+                
+                <div class="game-card multiplayer" data-game="tictactoe">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="game-icon">⭕</div>
+                        <h3>Morpion</h3>
+                        <p>Tic-Tac-Toe en ligne</p>
+                        <div class="best-score multiplayer-badge">👥 Multijoueur</div>
+                    </div>
+                </div>
+                
+                <div class="game-card multiplayer" data-game="connect4">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="game-icon">🔴</div>
+                        <h3>Puissance 4</h3>
+                        <p>Connect 4 en ligne</p>
+                        <div class="best-score multiplayer-badge">👥 Multijoueur</div>
+                    </div>
+                </div>
+                
+                <div class="game-card" data-game="hangman">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="game-icon">📝</div>
+                        <h3>Pendu</h3>
+                        <p>Devine le mot !</p>
+                        <div class="best-score">Meilleur : <span id="best-hangman">0</span></div>
+                    </div>
+                </div>
+                
+                <div class="game-card multiplayer" data-game="soccer">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="game-icon">⚽</div>
+                        <h3>Soccer</h3>
+                        <p>Football arcade 2J</p>
+                        <div class="best-score multiplayer-badge">👥 Multijoueur</div>
+                    </div>
+                </div>
+                
+                <div class="game-card" data-game="racing">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="game-icon">🏎️</div>
+                        <h3>Racing</h3>
+                        <p>Course de voitures</p>
+                        <div class="best-score">Meilleur : <span id="best-racing">0</span></div>
+                    </div>
+                </div>
             </div>
             
             <div class="footer-info">
                 <p>Sélectionne un jeu pour commencer l'aventure cosmique</p>
+                <p style="font-size: 0.9rem; margin-top: 0.5rem; color: rgba(255, 46, 151, 0.8);">
+                    👥 Les jeux multijoueurs se jouent à 2 sur le même clavier
+                </p>
             </div>
         </div>
         
@@ -110,6 +233,47 @@
             </div>
         </div>
         
+        <!-- Écran de Matchmaking -->
+        <div id="matchmaking-screen" class="screen">
+            <div class="matchmaking-container">
+                <div class="cosmic-glow"></div>
+                
+                <h2 class="matchmaking-title">
+                    <span class="pulse-glow">Recherche d'adversaire</span>
+                </h2>
+                
+                <div class="matchmaking-game-info">
+                    <div id="matchmaking-game-icon" class="game-icon-large">🎮</div>
+                    <h3 id="matchmaking-game-name">Jeu</h3>
+                </div>
+                
+                <div class="matchmaking-spinner">
+                    <div class="spinner-ring"></div>
+                    <div class="spinner-ring"></div>
+                    <div class="spinner-ring"></div>
+                </div>
+                
+                <p class="matchmaking-status">
+                    Recherche d'un joueur en ligne...
+                </p>
+                
+                <div class="matchmaking-info">
+                    <div class="info-item">
+                        <span class="info-label">Connexion:</span>
+                        <span id="connection-status" class="info-value">●</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="info-label">Latence:</span>
+                        <span id="latency-display" class="info-value">-- ms</span>
+                    </div>
+                </div>
+                
+                <button id="cancel-matchmaking-btn" class="cosmic-button">
+                    <span>Annuler</span>
+                </button>
+            </div>
+        </div>
+        
     </div>
     
     <!-- Audio elements (optionnel, peut être désactivé) -->
@@ -130,11 +294,29 @@
     </audio>
     
     <!-- Scripts -->
+    <!-- Socket.IO pour le multijoueur en ligne -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="js/socket-client.js"></script>
     <script src="js/utils.js"></script>
+    <!-- Jeux Solo -->
     <script src="js/ReflexGame.js"></script>
     <script src="js/SnakeGame.js"></script>
     <script src="js/PongGame.js"></script>
     <script src="js/ClickRush.js"></script>
+    <script src="js/TetrisGame.js"></script>
+    <script src="js/BreakoutGame.js"></script>
+    <script src="js/SpaceInvadersGame.js"></script>
+    <script src="js/FlappyGame.js"></script>
+    <!-- Jeux Multijoueurs -->
+    <script src="js/TronGame.js"></script>
+    <script src="js/AirHockeyGame.js"></script>
+    <script src="js/TankBattleGame.js"></script>
+    <script src="js/TicTacToeGame.js"></script>
+    <script src="js/Connect4Game.js"></script>
+    <script src="js/SoccerGame.js"></script>
+    <!-- Jeux Additionnels -->
+    <script src="js/HangmanGame.js"></script>
+    <script src="js/RacingGame.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

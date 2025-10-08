@@ -5,13 +5,16 @@ Bienvenue dans **Mini Arcade Universe**, une collection de mini-jeux web avec un
 ## ✨ Fonctionnalités
 
 - **Menu principal galaxie** avec étoiles animées, particules et effets de glow
-- **4 mini-jeux complets** et jouables
+- **7 mini-jeux complets** : 4 solo + 3 multijoueurs
+- **Mode multijoueur local** pour jouer à 2 sur le même clavier
 - **Système de scores** sauvegardés dans localStorage
 - **Effets visuels cosmiques** : néon, glow, transitions fluides, particules
 - **Design responsive** et moderne
 - **Contrôles intuitifs** au clavier et à la souris
 
 ## 🎯 Les Mini-Jeux
+
+### 🎮 Jeux Solo
 
 ### ⚡ Reflex Game
 Teste ta rapidité ! Clique sur la cible dès qu'elle apparaît. Plus tu es rapide, plus tu gagnes de points.
@@ -37,26 +40,63 @@ Clique le plus vite possible pendant 15 secondes !
 - Pénalité pour les clics manqués
 - Affichage du CPS (Clics Par Seconde)
 
+### 👥 Jeux Multijoueurs (2 Joueurs)
+
+### 🏍️ Tron (Light Cycles)
+Course de motos lumineuses ! Ne touche pas les murs ni les traînées.
+- **Joueur 1 :** WASD
+- **Joueur 2 :** Flèches directionnelles
+- Premier à 3 victoires gagne
+- Stratégie : piège ton adversaire !
+
+### 🏒 Air Hockey
+Hockey spatial à 2 joueurs ! Marque 5 buts pour gagner.
+- **Joueur 1 :** WASD (palette du bas)
+- **Joueur 2 :** Souris (palette du haut)
+- Physique réaliste du palet
+- Effets de particules à chaque collision
+
+### 🔫 Tank Battle
+Combat de tanks explosif ! 3 vies chacun.
+- **Joueur 1 :** WASD (déplacement) + Shift (tir)
+- **Joueur 2 :** Flèches (déplacement) + Entrée (tir)
+- Obstacles sur le terrain
+- 3 balles maximum par joueur
+- Stratégie et précision requises !
+
 ## 🚀 Installation & Lancement
 
-### Méthode simple
+### 🎮 Mode Jeux Solo (Simple)
+Pour jouer uniquement aux jeux solo :
+
 1. Télécharge le projet
 2. Ouvre `index.html` dans ton navigateur
-3. C'est tout ! Joue et amuse-toi ! 🎉
+3. Joue aux jeux solo ! 🎉
 
-### Serveur local (optionnel)
-Pour une meilleure expérience, utilise un serveur local :
+### 🌐 Mode Multijoueur EN LIGNE (Recommandé)
+Pour jouer aux jeux multijoueurs en ligne avec WebSocket :
 
+#### 1. Installer Node.js
+Télécharge et installe [Node.js](https://nodejs.org/) (v14+)
+
+#### 2. Installer les dépendances
 ```bash
-# Avec Python 3
 cd mini-arcade-web
-python -m http.server 8000
-
-# Avec Node.js (http-server)
-npx http-server mini-arcade-web -p 8000
+npm install
 ```
 
-Puis ouvre http://localhost:8000 dans ton navigateur.
+#### 3. Lancer le serveur
+```bash
+npm start
+```
+
+#### 4. Ouvrir le jeu
+Ouvre ton navigateur sur : **http://localhost:3000**
+
+🎯 **C'est tout !** Les jeux multijoueurs sont maintenant disponibles en ligne !
+
+### 📖 Guide détaillé
+Consulte [INSTALL.md](INSTALL.md) pour plus de détails sur l'installation.
 
 ## 🎨 Design
 
@@ -82,7 +122,10 @@ mini-arcade-web/
 │   ├── ReflexGame.js      # Jeu de réflexes
 │   ├── SnakeGame.js       # Jeu Snake
 │   ├── PongGame.js        # Jeu Pong
-│   └── ClickRush.js       # Jeu Click Rush
+│   ├── ClickRush.js       # Jeu Click Rush
+│   ├── TronGame.js        # Jeu Tron (2 joueurs)
+│   ├── AirHockeyGame.js   # Air Hockey (2 joueurs)
+│   └── TankBattleGame.js  # Tank Battle (2 joueurs)
 ├── assets/
 │   ├── images/            # Images (vide pour l'instant)
 │   ├── sounds/            # Sons (vide pour l'instant)
@@ -125,9 +168,32 @@ Fichiers audio suggérés :
 - Affichage en temps réel
 - Système de records par jeu
 
+### Mode Multijoueur
+- **3 jeux multijoueurs locaux** (sur le même clavier)
+- Contrôles séparés pour chaque joueur
+- Idéal pour jouer entre amis ou en famille
+- Badges spéciaux pour identifier les jeux multijoueurs
+
 ### Responsive
 - Interface adaptative
 - Contrôles tactiles possibles (à étendre)
+
+## 🎮 Guide des Contrôles
+
+### Jeux Solo
+| Jeu | Contrôles |
+|-----|-----------|
+| Reflex Game | Souris (clic) |
+| Snake | Flèches ou WASD |
+| Pong | Flèches ou W/S |
+| Click Rush | Souris (clic) |
+
+### Jeux Multijoueurs
+| Jeu | Joueur 1 | Joueur 2 |
+|-----|----------|----------|
+| Tron | WASD | Flèches directionnelles |
+| Air Hockey | WASD | Souris |
+| Tank Battle | WASD + Shift (tir) | Flèches + Entrée (tir) |
 
 ## 🛠️ Personnalisation
 

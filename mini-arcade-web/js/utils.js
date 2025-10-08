@@ -53,7 +53,7 @@ function updateScoreDisplay(score) {
  * Charge tous les meilleurs scores au menu
  */
 function loadBestScores() {
-    const games = ['reflex', 'snake', 'pong', 'clickrush'];
+    const games = ['reflex', 'snake', 'pong', 'clickrush', 'tetris', 'breakout', 'spaceinvaders', 'flappy', 'hangman', 'racing'];
     games.forEach(game => {
         const scoreElement = document.getElementById(`best-${game}`);
         if (scoreElement) {
